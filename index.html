@@ -60,7 +60,6 @@
                 <li><a href="#families">Families</a></li>
                 <li><a href="#details">Details</a></li>
                 <li><a href="#countdown">Countdown</a></li>
-                <li><a href="#rsvp">RSVP</a></li>
             </ul>
         </div>
     </nav>
@@ -275,108 +274,6 @@
                 </div>
             </div>
             <p class="countdown-message reveal-up" data-delay="400">Until we say "Yes!"</p>
-        </div>
-    </section>
-
-    <!-- RSVP Section -->
-    <section id="rsvp" class="rsvp-section">
-        <div class="section-header reveal-up" data-delay="0">
-            <span class="section-label">Be Our Guest</span>
-            <h2 class="section-title">RSVP</h2>
-            <p class="section-subtitle">Kindly respond by August 15th, 2026</p>
-        </div>
-
-        <form id="rsvp-form" class="rsvp-form reveal-up" data-delay="200" action="https://formsubmit.co/ajax/noblejjcc@gmail.com" method="POST">
-            <input type="hidden" name="_subject" value="New RSVP for Kefin & Ludhiya Engagement">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_captcha" value="false">
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="rsvp-name">Full Name</label>
-                    <input type="text" id="rsvp-name" name="name" placeholder="Your name" required>
-                    <div class="input-highlight"></div>
-                </div>
-                <div class="form-group">
-                    <label for="rsvp-email">Email</label>
-                    <input type="email" id="rsvp-email" name="email" placeholder="your@email.com" required>
-                    <div class="input-highlight"></div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>Will you attend?</label>
-                <div class="rsvp-options">
-                    <label class="rsvp-option">
-                        <input type="radio" name="attending" value="yes" required>
-                        <span class="option-card">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-                            </svg>
-                            <strong>Joyfully Accept</strong>
-                        </span>
-                    </label>
-                    <label class="rsvp-option">
-                        <input type="radio" name="attending" value="no" required>
-                        <span class="option-card">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-                                <line x1="1" y1="1" x2="23" y2="23"/>
-                            </svg>
-                            <strong>Regretfully Decline</strong>
-                        </span>
-                    </label>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="rsvp-guests">Number of Guests</label>
-                    <select id="rsvp-guests" name="guests">
-                        <option value="1">1 Guest</option>
-                        <option value="2" selected>2 Guests</option>
-                        <option value="3">3 Guests</option>
-                        <option value="4">4 Guests</option>
-                    </select>
-                    <div class="input-highlight"></div>
-                </div>
-                <div class="form-group">
-                    <label for="rsvp-dietary">Dietary Requirements</label>
-                    <select id="rsvp-dietary" name="dietary">
-                        <option value="none">None</option>
-                        <option value="vegetarian">Vegetarian</option>
-                        <option value="vegan">Vegan</option>
-                        <option value="gluten-free">Gluten-Free</option>
-                        <option value="other">Other (specify in message)</option>
-                    </select>
-                    <div class="input-highlight"></div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="rsvp-message">Message for the Couple</label>
-                <textarea id="rsvp-message" name="message" placeholder="Share your wishes..." rows="4"></textarea>
-                <div class="input-highlight"></div>
-            </div>
-
-            <button type="submit" id="rsvp-submit" class="rsvp-submit">
-                <span class="btn-text">Send Your Response</span>
-                <span class="btn-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
-                    </svg>
-                </span>
-            </button>
-        </form>
-
-        <!-- Success Message -->
-        <div id="rsvp-success" class="rsvp-success hidden">
-            <div class="success-icon">
-                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-                </svg>
-            </div>
-            <h3>Thank You!</h3>
-            <p>Your response has been received.<br>We can't wait to celebrate with you!</p>
         </div>
     </section>
 

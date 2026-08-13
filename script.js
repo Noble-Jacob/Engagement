@@ -1,7 +1,7 @@
 /* =============================================
    WEDDING INVITATION — JavaScript
    Floating petals, sparkle trail, countdown,
-   scroll reveals, RSVP form, navigation
+   scroll reveals, navigation
    ============================================= */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -383,106 +383,8 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
-
     // ==========================================
-    //  6. RSVP FORM
-    // ==========================================
-    const rsvpForm = document.getElementById('rsvp-form');
-    const rsvpSuccess = document.getElementById('rsvp-success');
-    const rsvpSubmit = document.getElementById('rsvp-submit');
-
-    rsvpForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        // Button loading state
-        const btnText = rsvpSubmit.querySelector('.btn-text');
-        const originalText = btnText.textContent;
-        btnText.textContent = 'Sending...';
-        rsvpSubmit.disabled = true;
-        rsvpSubmit.style.opacity = '0.7';
-
-        try {
-            const response = await fetch(rsvpForm.action, {
-                method: 'POST',
-                body: new FormData(rsvpForm),
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
-
-            if (!response.ok) {
-                throw new Error('RSVP submission failed');
-            }
-
-            rsvpForm.style.transition = 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
-            rsvpForm.style.opacity = '0';
-            rsvpForm.style.transform = 'translateY(-20px)';
-
-            setTimeout(() => {
-                rsvpForm.style.display = 'none';
-                rsvpSuccess.classList.remove('hidden');
-
-                // Launch celebration confetti
-                launchCelebration();
-            }, 400);
-        } catch (error) {
-            btnText.textContent = originalText;
-            rsvpSubmit.disabled = false;
-            rsvpSubmit.style.opacity = '1';
-            alert('Sorry, your RSVP could not be sent. Please try again.');
-        }
-    });
-
-    // Mini celebration effect on RSVP success
-    function launchCelebration() {
-        const colors = ['#f5c6d0', '#e8a0b0', '#c5b3d9', '#c9a96e', '#e8d5a8', '#b5c9b0'];
-        const container = document.querySelector('.rsvp-section');
-
-        for (let i = 0; i < 50; i++) {
-            setTimeout(() => {
-                const confetti = document.createElement('div');
-                confetti.style.cssText = `
-                    position: absolute;
-                    width: ${Math.random() * 8 + 4}px;
-                    height: ${Math.random() * 8 + 4}px;
-                    background: ${colors[Math.floor(Math.random() * colors.length)]};
-                    border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
-                    top: 50%;
-                    left: ${Math.random() * 100}%;
-                    pointer-events: none;
-                    z-index: 10;
-                    animation: confetti-fall ${Math.random() * 2 + 1.5}s ease-out forwards;
-                `;
-                container.style.position = 'relative';
-                container.appendChild(confetti);
-
-                setTimeout(() => confetti.remove(), 3000);
-            }, i * 30);
-        }
-    }
-
-    // Add confetti animation to document
-    const confettiStyle = document.createElement('style');
-    confettiStyle.textContent = `
-        @keyframes confetti-fall {
-            0% {
-                opacity: 1;
-                transform: translateY(0) rotate(0deg) scale(1);
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(${-200 + Math.random() * 400}px) 
-                           translateX(${(Math.random() - 0.5) * 200}px)
-                           rotate(${Math.random() * 720}deg) 
-                           scale(0);
-            }
-        }
-    `;
-    document.head.appendChild(confettiStyle);
-
-
-    // ==========================================
-    //  7. SMOOTH SECTION PARALLAX (subtle)
+    //  6. SMOOTH SECTION PARALLAX (subtle)
     // ==========================================
     const hero = document.querySelector('.hero');
     const heroContent = document.querySelector('.hero-content');
@@ -500,7 +402,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ==========================================
-    //  8. ACTIVE NAV LINK HIGHLIGHT
+    //  7. ACTIVE NAV LINK HIGHLIGHT
     // ==========================================
     const sections = document.querySelectorAll('section');
     const navLinksAll = document.querySelectorAll('.nav-links a');

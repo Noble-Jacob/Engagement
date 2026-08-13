@@ -97,11 +97,11 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 24px;
+    padding: 22px;
     background:
-        radial-gradient(circle at 18% 18%, rgba(245, 198, 208, 0.42), transparent 30%),
-        radial-gradient(circle at 82% 82%, rgba(197, 179, 217, 0.32), transparent 32%),
-        linear-gradient(135deg, #fffaf3 0%, #f8efe8 52%, #f6f1e8 100%);
+        radial-gradient(circle at 18% 16%, rgba(245, 198, 208, 0.36), transparent 32%),
+        radial-gradient(circle at 82% 84%, rgba(197, 179, 217, 0.26), transparent 34%),
+        linear-gradient(135deg, #fff8f0 0%, #f8efe8 48%, #f5eee6 100%);
     transition: opacity 0.8s var(--ease-out-expo), visibility 0.8s var(--ease-out-expo);
 }
 
@@ -135,19 +135,22 @@ img {
 }
 
 .invitation-card {
-    width: min(100%, 470px);
-    min-height: 570px;
-    padding: clamp(38px, 6vw, 58px) clamp(28px, 5vw, 48px);
+    width: min(100%, 430px);
+    min-height: auto;
+    padding: clamp(34px, 5vw, 46px) clamp(28px, 5vw, 42px);
     border: 1px solid rgba(201, 169, 110, 0.42);
-    border-radius: 28px;
+    border-radius: 30px;
     background:
-        linear-gradient(rgba(255, 254, 249, 0.9), rgba(255, 254, 249, 0.9)),
+        linear-gradient(rgba(255, 254, 249, 0.93), rgba(255, 254, 249, 0.91)),
         url('images/hero-background.png') center/cover no-repeat;
-    box-shadow: 0 28px 80px rgba(74, 55, 40, 0.16);
+    box-shadow: 0 30px 90px rgba(74, 55, 40, 0.16);
     text-align: center;
     position: relative;
     overflow: hidden;
     animation: invitation-float 4.5s ease-in-out infinite;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .invitation-card::before,
@@ -161,13 +164,13 @@ img {
 }
 
 .invitation-card::before {
-    top: -82px;
-    left: -68px;
+    top: -76px;
+    left: -64px;
 }
 
 .invitation-card::after {
-    right: -70px;
-    bottom: -76px;
+    right: -66px;
+    bottom: -74px;
 }
 
 @keyframes invitation-float {
@@ -254,61 +257,100 @@ img {
 
 .invitation-card-ornament {
     font-family: var(--font-display);
-    font-size: 2.3rem;
+    font-size: 2.15rem;
     color: var(--color-gold-dark);
     line-height: 1;
-    margin-bottom: 34px;
+    margin-bottom: 26px;
+    display: grid;
+    grid-template-columns: 48px 24px 48px;
+    align-items: center;
+    justify-content: center;
+    column-gap: 7px;
+    width: 134px;
 }
 
-.invitation-card-ornament span {
+.card-initial:first-child {
+    text-align: right;
+}
+
+.card-initial:last-child {
+    text-align: left;
+}
+
+.invitation-card-ornament .card-heart {
     font-family: var(--font-body);
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     color: var(--color-blush-deep);
-    margin: 0 9px;
+    line-height: 1;
 }
 
 .invitation-card-kicker {
-    font-size: 0.74rem;
+    font-size: 0.7rem;
     font-weight: 600;
-    letter-spacing: 5px;
+    letter-spacing: 5.5px;
     text-transform: uppercase;
     color: var(--color-gold-dark);
-    margin-bottom: 18px;
+    margin-bottom: 12px;
 }
 
-.invitation-card h1 {
+.invitation-card-names {
     font-family: var(--font-display);
-    font-size: clamp(4.1rem, 13vw, 6rem);
     font-weight: 400;
-    line-height: 0.92;
+    line-height: 0.88;
     color: var(--color-text);
-    margin-bottom: 24px;
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.invitation-card-names span:not(.card-ampersand) {
+    display: block;
+    font-size: clamp(4.5rem, 9vw, 5.75rem);
+    text-align: center;
+}
+
+.invitation-card-names .card-ampersand {
+    display: block;
+    font-size: 2.55rem;
+    line-height: 0.78;
+    color: var(--color-gold);
+    margin: 10px 0 7px;
+}
+
+.invitation-card-divider {
+    width: min(100%, 250px);
+    height: 1px;
+    margin: 0 auto 20px;
+    background: linear-gradient(90deg, transparent, rgba(201, 169, 110, 0.58), transparent);
 }
 
 .invitation-card-text {
     font-family: var(--font-heading);
-    font-size: 1.22rem;
+    font-size: 1.12rem;
     font-style: italic;
     font-weight: 300;
-    line-height: 1.55;
+    line-height: 1.52;
     color: var(--color-text-light);
-    margin-bottom: 26px;
+    max-width: 320px;
+    margin-bottom: 24px;
 }
 
 .invitation-card-date {
     font-family: var(--font-heading);
-    font-size: 1.08rem;
-    letter-spacing: 3px;
+    font-size: 1rem;
+    letter-spacing: 4px;
     color: var(--color-text);
-    margin-bottom: 34px;
+    margin-bottom: 28px;
 }
 
 .open-invitation {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 230px;
-    padding: 14px 28px;
+    min-width: 244px;
+    padding: 13px 28px;
     border: 1.5px solid var(--color-gold);
     border-radius: 50px;
     background: rgba(255, 255, 255, 0.58);
@@ -1901,16 +1943,47 @@ img {
     }
 
     .invitation-card {
-        min-height: 530px;
+        width: min(100%, 380px);
+        min-height: auto;
+        padding: 30px 24px 32px;
         border-radius: 24px;
     }
 
     .invitation-card-ornament {
-        margin-bottom: 28px;
+        font-size: 1.9rem;
+        grid-template-columns: 42px 22px 42px;
+        width: 120px;
+        margin-bottom: 20px;
+    }
+
+    .invitation-card-kicker {
+        font-size: 0.62rem;
+        letter-spacing: 4.5px;
+    }
+
+    .invitation-card-names span:not(.card-ampersand) {
+        font-size: clamp(3.75rem, 18vw, 4.8rem);
+    }
+
+    .invitation-card-names .card-ampersand {
+        font-size: 2.25rem;
+        margin: 8px 0 6px;
     }
 
     .invitation-card-text {
-        font-size: 1.08rem;
+        font-size: 1rem;
+        max-width: 290px;
+    }
+
+    .invitation-card-date {
+        font-size: 0.92rem;
+        letter-spacing: 3px;
+    }
+
+    .open-invitation {
+        min-width: min(100%, 230px);
+        font-size: 0.68rem;
+        letter-spacing: 3.5px;
     }
 
     .nav-inner {

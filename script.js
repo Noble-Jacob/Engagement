@@ -7,6 +7,107 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // ==========================================
+    //  0. OPENING INVITATION + SOFT BGM
+    // ==========================================
+    const invitationGate = document.getElementById('invitation-gate');
+    const openInvitationBtn = document.getElementById('open-invitation');
+    const musicToggle = document.getElementById('music-toggle');
+    let audioContext;
+    let masterGain;
+    let musicTimer;
+    let musicPlaying = false;
+
+    const melody = [
+        { note: 392.0, length: 0.9 },
+        { note: 493.88, length: 0.9 },
+        { note: 587.33, length: 1.2 },
+        { note: 523.25, length: 0.9 },
+        { note: 493.88, length: 1.1 },
+        { note: 440.0, length: 0.9 },
+        { note: 392.0, length: 1.4 },
+    ];
+
+    function initAudio() {
+        if (audioContext) return;
+
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        masterGain = audioContext.createGain();
+        masterGain.gain.value = 0.08;
+        masterGain.connect(audioContext.destination);
+    }
+
+    function playTone(frequency, startTime, duration) {
+        const oscillator = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(frequency, startTime);
+        gain.gain.setValueAtTime(0, startTime);
+        gain.gain.linearRampToValueAtTime(0.8, startTime + 0.08);
+        gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+
+        oscillator.connect(gain);
+        gain.connect(masterGain);
+        oscillator.start(startTime);
+        oscillator.stop(startTime + duration + 0.04);
+    }
+
+    function playMelodyLoop() {
+        if (!musicPlaying || !audioContext) return;
+
+        let time = audioContext.currentTime + 0.05;
+        melody.forEach(({ note, length }) => {
+            playTone(note, time, length);
+            playTone(note / 2, time, length * 1.05);
+            time += length;
+        });
+
+        musicTimer = setTimeout(playMelodyLoop, 7400);
+    }
+
+    function startMusic() {
+        initAudio();
+
+        if (audioContext.state === 'suspended') {
+            audioContext.resume();
+        }
+
+        if (musicPlaying) return;
+        musicPlaying = true;
+        musicToggle.classList.add('is-playing');
+        musicToggle.setAttribute('aria-pressed', 'true');
+        playMelodyLoop();
+    }
+
+    function stopMusic() {
+        musicPlaying = false;
+        clearTimeout(musicTimer);
+        musicToggle.classList.remove('is-playing');
+        musicToggle.setAttribute('aria-pressed', 'false');
+    }
+
+    openInvitationBtn.addEventListener('click', () => {
+        startMusic();
+        invitationGate.classList.add('is-opened');
+        document.body.classList.remove('invitation-locked');
+        document.body.classList.add('site-entering');
+        musicToggle.classList.add('visible');
+
+        setTimeout(() => {
+            invitationGate.remove();
+            document.body.classList.remove('site-entering');
+        }, 900);
+    });
+
+    musicToggle.addEventListener('click', () => {
+        if (musicPlaying) {
+            stopMusic();
+        } else {
+            startMusic();
+        }
+    });
+
+    // ==========================================
     //  1. FLOATING PETALS — Canvas Animation
     // ==========================================
     const canvas = document.getElementById('petals-canvas');

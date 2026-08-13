@@ -926,18 +926,17 @@ img {
 
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 22px;
 }
 
 .gallery-photo {
-    min-height: 308px;
+    min-height: 198px;
     border-radius: 26px;
 }
 
-.gallery-photo:nth-child(2),
-.gallery-photo:nth-child(3) {
-    transform: translateY(24px);
+.gallery-photo:nth-child(2) {
+    min-height: 240px;
 }
 
 .gallery-feature img,
@@ -952,7 +951,7 @@ img {
     object-position: center top;
 }
 
-.gallery-photo:nth-child(3) img {
+.gallery-photo:nth-child(2) img {
     object-position: center top;
 }
 
@@ -1821,11 +1820,6 @@ img {
     .gallery-feature {
         min-height: 560px;
         border-radius: 140px 140px 26px 26px;
-    }
-
-    .gallery-photo:nth-child(2),
-    .gallery-photo:nth-child(3) {
-        transform: none;
     }
 
     .families-grid,

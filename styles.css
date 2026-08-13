@@ -117,6 +117,21 @@ img {
 .invitation-gate.is-opened {
     opacity: 0;
     visibility: hidden;
+    transition-delay: 0.85s;
+}
+
+.invitation-gate.is-opening .invitation-card {
+    animation: invitation-open-card 1.25s var(--ease-out-expo) forwards;
+}
+
+.invitation-gate.is-opening::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0) 56%);
+    opacity: 0;
+    animation: invitation-glow 1.25s ease-out forwards;
+    pointer-events: none;
 }
 
 .invitation-card {
@@ -158,6 +173,83 @@ img {
 @keyframes invitation-float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-8px); }
+}
+
+@keyframes invitation-open-card {
+    0% {
+        transform: translateY(0) scale(1) rotateX(0deg);
+        filter: brightness(1);
+    }
+    38% {
+        transform: translateY(-18px) scale(1.025) rotateX(0deg);
+        filter: brightness(1.04);
+    }
+    100% {
+        transform: translateY(-78px) scale(0.92) rotateX(12deg);
+        opacity: 0;
+        filter: brightness(1.12);
+    }
+}
+
+@keyframes invitation-glow {
+    0% { opacity: 0; transform: scale(0.6); }
+    45% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(1.35); }
+}
+
+.invitation-spark {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: var(--spark-size);
+    height: var(--spark-size);
+    border-radius: 50%;
+    background: var(--spark-color);
+    box-shadow: 0 0 18px var(--spark-color);
+    pointer-events: none;
+    z-index: 2;
+    animation: invitation-spark-burst 1.15s var(--ease-out-expo) forwards;
+}
+
+@keyframes invitation-spark-burst {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.2);
+    }
+    18% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(calc(-50% + var(--spark-x)), calc(-50% + var(--spark-y))) scale(0.05);
+    }
+}
+
+.invitation-petal {
+    position: absolute;
+    left: 50%;
+    top: 54%;
+    width: 12px;
+    height: 18px;
+    border-radius: 70% 0 70% 0;
+    background: rgba(245, 198, 208, 0.78);
+    pointer-events: none;
+    z-index: 2;
+    animation: invitation-petal-fall 1.45s ease-out forwards;
+}
+
+@keyframes invitation-petal-fall {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) rotate(0deg) scale(0.4);
+    }
+    20% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(calc(-50% + var(--petal-x)), calc(-50% + var(--petal-y))) rotate(var(--petal-rotate)) scale(1);
+    }
 }
 
 .invitation-card-ornament {

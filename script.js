@@ -86,17 +86,57 @@ document.addEventListener('DOMContentLoaded', () => {
         musicToggle.setAttribute('aria-pressed', 'false');
     }
 
+    function createInvitationBurst() {
+        const sparkColors = ['#c9a96e', '#e8a0b0', '#f5c6d0', '#c5b3d9', '#e8d5a8'];
+
+        for (let i = 0; i < 34; i++) {
+            const spark = document.createElement('span');
+            const angle = (Math.PI * 2 * i) / 34;
+            const distance = 120 + Math.random() * 190;
+
+            spark.className = 'invitation-spark';
+            spark.style.setProperty('--spark-x', `${Math.cos(angle) * distance}px`);
+            spark.style.setProperty('--spark-y', `${Math.sin(angle) * distance}px`);
+            spark.style.setProperty('--spark-size', `${Math.random() * 5 + 4}px`);
+            spark.style.setProperty('--spark-color', sparkColors[Math.floor(Math.random() * sparkColors.length)]);
+            invitationGate.appendChild(spark);
+
+            setTimeout(() => spark.remove(), 1300);
+        }
+
+        for (let i = 0; i < 18; i++) {
+            const petal = document.createElement('span');
+            petal.className = 'invitation-petal';
+            petal.style.setProperty('--petal-x', `${(Math.random() - 0.5) * 520}px`);
+            petal.style.setProperty('--petal-y', `${80 + Math.random() * 280}px`);
+            petal.style.setProperty('--petal-rotate', `${Math.random() * 520 - 260}deg`);
+            petal.style.animationDelay = `${Math.random() * 0.18}s`;
+            invitationGate.appendChild(petal);
+
+            setTimeout(() => petal.remove(), 1700);
+        }
+    }
+
     openInvitationBtn.addEventListener('click', () => {
+        if (invitationGate.classList.contains('is-opening')) return;
+
         startMusic();
-        invitationGate.classList.add('is-opened');
-        document.body.classList.remove('invitation-locked');
-        document.body.classList.add('site-entering');
+        createInvitationBurst();
+        invitationGate.classList.add('is-opening');
+        openInvitationBtn.disabled = true;
+
+        setTimeout(() => {
+            invitationGate.classList.add('is-opened');
+            document.body.classList.remove('invitation-locked');
+            document.body.classList.add('site-entering');
+        }, 680);
+
         musicToggle.classList.add('visible');
 
         setTimeout(() => {
             invitationGate.remove();
             document.body.classList.remove('site-entering');
-        }, 900);
+        }, 1750);
     });
 
     musicToggle.addEventListener('click', () => {

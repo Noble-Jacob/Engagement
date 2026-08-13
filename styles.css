@@ -1191,16 +1191,17 @@ img {
 
 .details-grid {
     display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    gap: 40px;
-    align-items: start;
+    grid-template-columns: minmax(320px, 520px) minmax(220px, 320px);
+    gap: clamp(34px, 6vw, 72px);
+    align-items: center;
+    justify-content: center;
     margin-bottom: 40px;
 }
 
 .detail-card {
     background: var(--color-white);
-    border-radius: 20px;
-    padding: 40px 32px;
+    border-radius: 24px;
+    padding: clamp(38px, 5vw, 56px) clamp(30px, 5vw, 52px);
     text-align: center;
     box-shadow: 0 10px 45px rgba(74, 55, 40, 0.06);
     border: 1px solid rgba(201, 169, 110, 0.15);
@@ -1208,6 +1209,11 @@ img {
     position: relative;
     overflow: hidden;
     height: 100%;
+    min-height: 430px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .detail-card::before {
@@ -1246,7 +1252,7 @@ img {
 
 .detail-card h3 {
     font-family: var(--font-heading);
-    font-size: 1.6rem;
+    font-size: clamp(1.75rem, 3vw, 2.15rem);
     font-weight: 400;
     color: var(--color-text);
     margin-bottom: 16px;
@@ -1310,6 +1316,7 @@ img {
     color: var(--color-gold-dark);
     padding-top: 16px;
     border-top: 1px solid var(--color-blush-light);
+    max-width: 320px;
 }
 
 /* Detail Center (Rings) */
@@ -1317,7 +1324,12 @@ img {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 20px;
+    justify-content: center;
+    padding: 30px 24px;
+    min-height: 430px;
+    border-radius: 24px;
+    background: rgba(255, 254, 249, 0.55);
+    border: 1px solid rgba(201, 169, 110, 0.14);
 }
 
 .rings-image {
@@ -1815,8 +1827,13 @@ img {
         margin: 10px 0;
     }
 
+    .detail-card,
     .detail-center {
-        order: -1;
+        min-height: auto;
+    }
+
+    .detail-center {
+        padding: 28px 20px;
     }
 
     .rings-image {
